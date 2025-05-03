@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Encrypt Data</title>
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="container">
+        <h1>Encrypt Data</h1>
+        <form action="{{ url_for('main.encrypt') }}" method="POST">
+            <div class="form-group">
+                <label for="data">Data to Encrypt:</label>
+                <textarea id="data" name="data" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="method">Select Encryption Method:</label>
+                <select id="method" name="method" required>
+                    <option value="method1">Caesar Cipher</option>
+                    <option value="method2">Method 2</option>
+                    <option value="method3">Method 3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="key">Encryption Key (optional):</label>
+                <input type="text" id="key" name="key">
+            </div>
+            <button type="submit">Encrypt</button>
+        </form>
+        {% if encrypted_data %}
+            <h2>Encrypted Data:</h2>
+            <p>{{ encrypted_data }}</p>
+            {% if key %}
+                <h3>Encryption Key:</h3>
+                <p>{{ key }}</p>
+            {% endif %}
+        {% endif %}
+        {% if error %}
+            <h2>Error:</h2>
+            <p>{{ error }}</p>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
