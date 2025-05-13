@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>{% block title %}Flask Encrypter-Decrypter{% endblock %}</title>
+    <title>Métodos de Cifrado</title>
 </head>
 <body>
-    <header>
-        <h1>Flask Encrypter-Decrypter</h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('main.encrypt') }}">Encrypt</a></li>
-                <li><a href="{{ url_for('main.decrypt') }}">Decrypt</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-    <footer>
-        <p>&copy; 2023 Flask Encrypter-Decrypter</p>
-    </footer>
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <div class="container">
+        <h1>Bienvenido a la Aplicación de Cifrado</h1>
+        <div class="card">
+            <h2>Autor:</h2>
+            <p><strong>Nombre:</strong> Denzel Gabriel Pérez Rivera</p>
+            <p><strong>Matrícula:</strong> 1998175</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/denzelperez2004" target="_blank">DenzelPerez2004</a></p>
+        </div>
+        <div class="card">
+            <h2>Métodos de Cifrado</h2>
+            <p><strong>Cifrado César:</strong> Un cifrado por sustitución que desplaza cada letra del texto plano un número fijo de posiciones en el alfabeto.</p>
+            <p><strong>RSA:</strong> Un algoritmo de cifrado de clave pública que utiliza dos claves: una clave pública para cifrar y una clave privada para descifrar. Se basa en las propiedades matemáticas de los números primos.</p>
+        </div>
+        <div class="button-group">
+            <a href="{{ url_for('main.caesar') }}" class="btn">Ir al Cifrado César</a>
+            <a href="{{ url_for('main.rsa') }}" class="btn">Ir al RSA</a>
+            <a href="{{ url_for('main.show_code') }}" class="btn">Ver Código</a>
+        </div>
+    </div>
 </body>
 </html>

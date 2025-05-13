@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Cifrado RSA</title>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('main.home') }}" class="btn">Volver al Inicio</a>
+        <h1>Cifrado RSA</h1>
+        <form action="{{ url_for('main.rsa') }}" method="POST">
+            <input type="hidden" name="method" value="rsa">
+            <div class="form-group">
+                <label for="data">Texto:</label>
+                <textarea id="data" name="data" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="n">Módulo (n):</label>
+                <input type="text" id="n" name="n" value="{{ n or '' }}" placeholder="Introduce el módulo (n)" required>
+            </div>
+            <div class="form-group">
+                <label for="e">Exponente Público (e):</label>
+                <input type="text" id="e" name="e" value="{{ e or '' }}" placeholder="Introduce el exponente público (e)" required>
+            </div>
+            <div class="form-group">
+                <label for="d">Exponente Privado (d):</label>
+                <input type="text" id="d" name="d" value="{{ d or '' }}" placeholder="Introduce el exponente privado (d)" required>
+            </div>
+            <button type="submit" name="encrypt">Cifrar</button>
+            <button type="submit" name="decrypt">Descifrar</button>
+        </form>
+        <form action="{{ url_for('main.generate_rsa_keys_route') }}" method="POST">
+            <button type="submit" class="btn">Generar Claves RSA</button>
+        </form>
+        {% if encrypted_data %}
+            <h2>Texto Cifrado:</h2>
+            <p id="encrypted-data">{{ encrypted_data }}</p>
+            <button class="btn" onclick="copyToClipboard('encrypted-data')">Copiar Texto Cifrado</button>
+        {% endif %}
+        {% if decrypted_data %}
+            <h2>Texto Descifrado:</h2>
+            <p>{{ decrypted_data }}</p>
+        {% endif %}
+    </div>
+    <script>
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Texto cifrado copiado al portapapeles.");
+            }).catch(err => {
+                alert("Error al copiar el texto: " + err);
+            });
+        }
+    </script>
+</body>
+</html>

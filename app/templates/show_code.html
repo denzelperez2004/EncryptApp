@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Código Fuente</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Código Fuente: encryption_methods.py</h1>
+        <pre class="code-block">
+{{ code }}
+        </pre>
+        <a href="{{ url_for('main.home') }}" class="btn">Volver al Inicio</a>
+    </div>
+</body>
+</html>
